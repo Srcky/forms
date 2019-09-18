@@ -19,7 +19,8 @@ export class TravelFormComponent implements OnInit {
     'Worldwide(excluding USA, Canada and the Caribbean)',
     'Worldwide(including USA, Canada and the Caribbean)'
   ];
-  travelers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  noOfTravelers = 10;
+  travelers = Array(this.noOfTravelers).fill(null).map((k, i) => i + 1);
 
   ngOnInit() {
     this.travelForm = this.fb.group({
