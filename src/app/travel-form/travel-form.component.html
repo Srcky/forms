@@ -1,0 +1,43 @@
+<h1>
+  Travel-form:
+</h1>
+
+<form class="formGroup" [formGroup]="travelForm">
+  <div class="control-wrapper">
+    <label>Destination:</label>
+    <select formControlName="destination" required>
+      <option selected value="">Please select</option>
+      <option
+        *ngFor="let destination of destinations"
+        value="{{ destination }}"
+        >{{ destination }}</option
+      >
+    </select>
+  </div>
+  <div class="control-wrapper">
+    <label>Start Date:</label>
+    <input type="date" formControlName="startDate" required />
+  </div>
+  <div class="control-wrapper">
+    <label>End Date:</label>
+    <input type="date" formControlName="endDate" required />
+  </div>
+  <div class="control-wrapper">
+    <label>Duration in days:</label>
+    <input type="number" formControlName="durationInDays" required />
+  </div>
+  <div class="control-wrapper">
+    <label>Trip Cost:</label>
+    <input type="number" formControlName="tripCost" required />
+  </div>
+  <div class="control-wrapper">
+    <label>Number of travelers:</label>
+    <select formControlName="numberOfTravelers" required>
+      <option selected value="">Please select</option>
+      <option *ngFor="let traveler of travelers" value="">{{
+        traveler
+      }}</option>
+    </select>
+  </div>
+</form>
+<button (click)="onSubmit()">Submit</button>
