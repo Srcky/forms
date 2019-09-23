@@ -2,7 +2,7 @@
   Travel-form:
 </h1>
 
-<form class="formGroup" [formGroup]="travelForm">
+<form class="formGroup" [formGroup]="defaultForm">
   <div class="control-wrapper">
     <label>Destination:</label>
     <select formControlName="destination" required>
@@ -32,12 +32,34 @@
   </div>
   <div class="control-wrapper">
     <label>Number of travelers:</label>
-    <select formControlName="numberOfTravelers" required>
-      <option selected value="">Please select</option>
-      <option *ngFor="let traveler of travelers" value="">{{
-        traveler
-      }}</option>
+    <select
+      formControlName="numberOfTravelers"
+      required
+      (change)="addFormControls(defaultForm.get('numberOfTravelers'))"
+    >
+      <option selected>Please select</option>
+      <option *ngFor="let traveler of travelers">{{ traveler }}</option>
     </select>
   </div>
+  <div formArrayName="otherTravelers">
+    <div
+      class="control-wrapper"
+      *ngFor="let traveler of formArr.controls; let i = index"
+    >
+      <label>Additional traveler Age:</label>
+      <input type="number" formControlName="i" required />
+    </div>
+  </div>
+  <!-- <div *ngFor="let newControl of additional.controls; let i = index">
+    <label>
+      Alias:
+      <input type="text" [formControlName]="i" />
+    </label>
+  </div> -->
 </form>
-<button (click)="onSubmit()">Submit</button>
+<div>
+  <button (click)="addFormControls()">
+    Add Some Shit
+  </button>
+</div>
+<button (click)="onSubmit()" [disabled]="!defaultForm.valid">Submit</button>
