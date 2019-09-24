@@ -35,14 +35,11 @@ export class TravelFormComponent implements OnInit {
       durationInDays: ['', [Validators.required]],
       tripCost: ['', [Validators.required, Validators.min(0), Validators.max(1000000), Validators.pattern('^[0-9]*$')]],
       numberOfTravelers: ['', Validators.required],
-      // ageOfTraveler: ['', Validators.required, Validators.min(1), Validators.max(150), Validators.pattern('^[0-9]*$')]
       otherTravelers: this.fb.array([
         this.makeNew()
       ])
     });
     // this.defaultForm.get('destination').valueChanges.subscribe(data => console.log(data));
-    console.log(this.defaultForm);
-
   }
 
   onSubmit() {
@@ -50,15 +47,16 @@ export class TravelFormComponent implements OnInit {
   }
   makeNew(): FormGroup {
     return this.fb.group({
-      additionalAges: ['', [Validators.required]]
+      ageOfTraveler: ['', Validators.required, Validators.min(1), Validators.max(150), Validators.pattern('^[0-9]*$')]
     });
   }
   get formArr() {
     return this.defaultForm.get('otherTravelers') as FormArray;
   }
-  addFormControls(): void {
-    this.formArr.push(this.makeNew());
-    console.log(this.defaultForm);
+  addFormControls(qty): void {
+    for (let i = 0; i < qty.value; i++) {
+      this.formArr.push(this.makeNew());
+    }
   }
 
 }

@@ -41,25 +41,19 @@
       <option *ngFor="let traveler of travelers">{{ traveler }}</option>
     </select>
   </div>
-  <div formArrayName="otherTravelers">
-    <div
-      class="control-wrapper"
-      *ngFor="let traveler of formArr.controls; let i = index"
-    >
+  <div
+    formArrayName="otherTravelers"
+    *ngFor="let traveler of formArr.controls; let i = index"
+  >
+    <div class="control-wrapper" [formGroupName]="i">
       <label>Additional traveler Age:</label>
-      <input type="number" formControlName="i" required />
+      <input type="number" formControlName="ageOfTraveler" required />
     </div>
   </div>
-  <!-- <div *ngFor="let newControl of additional.controls; let i = index">
-    <label>
-      Alias:
-      <input type="text" [formControlName]="i" />
-    </label>
-  </div> -->
 </form>
 <div>
-  <button (click)="addFormControls()">
+  <!-- <button (click)="addFormControls()">
     Add Some Shit
-  </button>
+  </button> -->
 </div>
 <button (click)="onSubmit()" [disabled]="!defaultForm.valid">Submit</button>
