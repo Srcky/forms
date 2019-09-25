@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TravelFormComponent } from './travel-form/travel-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AutoFormComponent } from './auto-form/auto-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TravelFormComponent
+    TravelFormComponent,
+    AutoFormComponent
   ],
   imports: [
     BrowserModule,

@@ -35,7 +35,7 @@
     <select
       formControlName="numberOfTravelers"
       required
-      (change)="addFormControls(defaultForm.get('numberOfTravelers').value)"
+      (change)="toggleFormControls(defaultForm.get('numberOfTravelers').value)"
     >
       <option selected>Please select</option>
       <option *ngFor="let traveler of travelers">{{ traveler }}</option>

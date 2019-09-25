@@ -34,7 +34,7 @@ export class TravelFormComponent implements OnInit {
       endDate: ['', [Validators.required, CustomFormValidators.compareToCurrentDate('shouldBeGreater')]],
       durationInDays: ['', [Validators.required]],
       tripCost: ['', [Validators.required, Validators.min(0), Validators.max(1000000), Validators.pattern('^[0-9]*$')]],
-      numberOfTravelers: ['', Validators.required],
+      numberOfTravelers: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       otherTravelers: this.fb.array([
         this.makeNew()
       ])
@@ -53,20 +53,16 @@ export class TravelFormComponent implements OnInit {
   get formArr() {
     return this.defaultForm.get('otherTravelers') as FormArray;
   }
-  addFormControls(qty: number): void {
-    for (let i = 0; ; i++) {
-      if (i > qty) {
-        break;
-      }
-      if (qty > this.formArr.length) {
+  toggleFormControls(qty: number): void {
+    if (qty > this.formArr.length) {
+      for (let i = this.formArr.length; i < qty; i++) {
         this.formArr.push(this.makeNew());
-      } else {
-        while (this.formArr.length > qty) {
-          this.formArr.removeAt(0);
-        }
+      }
+    } else {
+      while (this.formArr.length > qty) {
+        this.formArr.removeAt(0);
       }
     }
-    console.log(this.defaultForm);
   }
 
 }
