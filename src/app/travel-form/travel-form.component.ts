@@ -39,7 +39,6 @@ export class TravelFormComponent implements OnInit {
         this.makeNew()
       ])
     });
-    // this.defaultForm.get('destination').valueChanges.subscribe(data => console.log(data));
   }
 
   onSubmit() {

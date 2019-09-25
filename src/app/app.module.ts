@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { TravelFormComponent } from './travel-form/travel-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AutoFormComponent } from './auto-form/auto-form.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TravelFormComponent,
-    AutoFormComponent
+    AutoFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
