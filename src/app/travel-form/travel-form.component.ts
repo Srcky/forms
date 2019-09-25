@@ -54,8 +54,17 @@ export class TravelFormComponent implements OnInit {
     return this.defaultForm.get('otherTravelers') as FormArray;
   }
   addFormControls(qty): void {
-    for (let i = 0; i < qty.value; i++) {
-      this.formArr.push(this.makeNew());
+    for (let i = 0; ; i++) {
+      if (i > qty.value) {
+        break;
+      }
+      if (qty.value > this.formArr.length) {
+        this.formArr.push(this.makeNew());
+      } else {
+        while (this.formArr.length > qty.value) {
+          this.formArr.removeAt(0);
+        }
+      }
     }
   }
 
