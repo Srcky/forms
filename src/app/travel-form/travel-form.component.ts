@@ -47,25 +47,26 @@ export class TravelFormComponent implements OnInit {
   }
   makeNew(): FormGroup {
     return this.fb.group({
-      ageOfTraveler: ['', Validators.required, Validators.min(1), Validators.max(150), Validators.pattern('^[0-9]*$')]
+      ageOfTraveler: ['', [Validators.required, Validators.min(1), Validators.max(150), Validators.pattern('^[0-9]*$')]]
     });
   }
   get formArr() {
     return this.defaultForm.get('otherTravelers') as FormArray;
   }
-  addFormControls(qty): void {
+  addFormControls(qty: number): void {
     for (let i = 0; ; i++) {
-      if (i > qty.value) {
+      if (i > qty) {
         break;
       }
-      if (qty.value > this.formArr.length) {
+      if (qty > this.formArr.length) {
         this.formArr.push(this.makeNew());
       } else {
-        while (this.formArr.length > qty.value) {
+        while (this.formArr.length > qty) {
           this.formArr.removeAt(0);
         }
       }
     }
+    console.log(this.defaultForm);
   }
 
 }
