@@ -25,7 +25,6 @@ export class TravelFormComponent implements OnInit {
   noOfTravelers = 10;
   travelers = Array(this.noOfTravelers).fill(null).map((k, i) => (i + 1));
   // travelers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-  selectedOption: string;
 
   ngOnInit() {
     this.defaultForm = this.fb.group({
@@ -39,6 +38,8 @@ export class TravelFormComponent implements OnInit {
         this.makeNew()
       ])
     });
+    console.log(this.defaultForm.get('otherTravelers'));
+
   }
 
   onSubmit() {

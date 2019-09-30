@@ -8,8 +8,68 @@
       <input type="date" formControlName="coverageStartDate" required />
     </div>
     <div class="control-wrapper">
-      <label>Coverage Start Date:</label>
-      <input type="number" formControlName="paymentFrequency" required />
+      <label>Payment Frequency:</label>
+      <select formControlName="paymentFrequency" required>
+        <option value="Monthly">Monthly</option>
+        <option value="Annualy">Annualy</option>
+      </select>
+    </div>
+  </fieldset>
+  <fieldset formGroupName="additionalDrivers">
+    <div class="control-wrapper">
+      <label>Number of drivers:</label>
+      <select
+        formControlName="numberOfDrivers"
+        required
+        (change)="
+          toggleFormControls(
+            defaultForm.get('additionalDrivers').get('numberOfDrivers').value
+          )
+        "
+      >
+        <option selected>Please select</option>
+        <option *ngFor="let driver of drivers">{{ driver }}</option>
+      </select>
+    </div>
+  </fieldset>
+  <fieldset
+    formArrayName="additionalDriver"
+    *ngFor="let driver of formArr.controls; let i = index"
+  >
+    <div [formGroupName]="i">
+      <div class="control-wrapper">
+        <label>Driver's date of birth:</label>
+        <input type="date" formControlName="driverDob" required />
+      </div>
+      <div class="control-wrapper">
+        <label>Driver's gender:</label>
+        <select formControlName="driverGender" required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div class="control-wrapper">
+        <label>Driver's Marital Status:</label>
+        <select formControlName="driverMaritalStatus" required>
+          <option value="Married">Married</option>
+          <option value="Single">Single</option>
+        </select>
+      </div>
+      <div class="control-wrapper">
+        <label>Driver's Category:</label>
+        <select formControlName="driverCategory" required>
+          <option value="Occasional Driver">Occasional Driver</option>
+          <option value="Frequent Driver">Frequent Driver</option>
+        </select>
+      </div>
+      <div class="control-wrapper">
+        <label>Driver Licence Date:</label>
+        <input type="date" formControlName="driverLicenceDate" required />
+      </div>
     </div>
   </fieldset>
 </form>
+<button [disabled]="!defaultForm.valid">Submit</button>
+<div>
+  <p>Form valid: {{ defaultForm.valid }}</p>
+</div>
