@@ -38,8 +38,6 @@ export class TravelFormComponent implements OnInit {
         this.makeNew()
       ])
     });
-    console.log(this.defaultForm.get('otherTravelers'));
-
   }
 
   onSubmit() {
