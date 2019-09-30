@@ -1,3 +1,15 @@
 <h1>
   Auto-form:
 </h1>
+<form class="formGroup" [formGroup]="defaultForm">
+  <fieldset formGroupName="general">
+    <div class="control-wrapper">
+      <label>Coverage Start Date:</label>
+      <input type="date" formControlName="coverageStartDate" required />
+    </div>
+    <div class="control-wrapper">
+      <label>Coverage Start Date:</label>
+      <input type="number" formControlName="paymentFrequency" required />
+    </div>
+  </fieldset>
+</form>
