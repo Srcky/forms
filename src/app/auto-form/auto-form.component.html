@@ -15,59 +15,58 @@
       </select>
     </div>
   </fieldset>
-  <fieldset formGroupName="additionalDrivers">
-    <div class="control-wrapper">
-      <label>Number of drivers:</label>
-      <select
-        formControlName="numberOfDrivers"
-        required
-        (change)="
-          toggleFormControls(
-            defaultForm.get('additionalDrivers').get('numberOfDrivers').value
-          )
-        "
-      >
-        <option selected>Please select</option>
-        <option *ngFor="let driver of drivers">{{ driver }}</option>
-      </select>
-    </div>
-  </fieldset>
-  <fieldset
-    formArrayName="additionalDriver"
-    *ngFor="let driver of formArr.controls; let i = index"
-  >
-    <div [formGroupName]="i">
-      <div class="control-wrapper">
-        <label>Driver's date of birth:</label>
-        <input type="date" formControlName="driverDob" required />
+  <div class="control-wrapper">
+    <label>Number of drivers:</label>
+    <select
+      formControlName="numberOfDrivers"
+      required
+      (change)="toggleFormControls(defaultForm.get('numberOfDrivers').value)"
+    >
+      <option selected>Please select</option>
+      <option *ngFor="let driver of drivers">{{ driver }}</option>
+    </select>
+  </div>
+  <ng-container *ngIf="defaultForm.get('numberOfDrivers').value > 0">
+    <fieldset
+      formArrayName="additionalDriver"
+      *ngFor="let driver of formArr.controls; let i = index"
+    >
+      <div>
+        <h3>Driver {{ i + 1 }}</h3>
       </div>
-      <div class="control-wrapper">
-        <label>Driver's gender:</label>
-        <select formControlName="driverGender" required>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
+      <div [formGroupName]="i">
+        <div class="control-wrapper">
+          <label>Driver's date of birth:</label>
+          <input type="date" formControlName="driverDob" required />
+        </div>
+        <div class="control-wrapper">
+          <label>Driver's gender:</label>
+          <select formControlName="driverGender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="control-wrapper">
+          <label>Driver's Marital Status:</label>
+          <select formControlName="driverMaritalStatus" required>
+            <option value="Married">Married</option>
+            <option value="Single">Single</option>
+          </select>
+        </div>
+        <div class="control-wrapper">
+          <label>Driver's Category:</label>
+          <select formControlName="driverCategory" required>
+            <option value="Occasional Driver">Occasional Driver</option>
+            <option value="Frequent Driver">Frequent Driver</option>
+          </select>
+        </div>
+        <div class="control-wrapper">
+          <label>Driver Licence Date:</label>
+          <input type="date" formControlName="driverLicenceDate" required />
+        </div>
       </div>
-      <div class="control-wrapper">
-        <label>Driver's Marital Status:</label>
-        <select formControlName="driverMaritalStatus" required>
-          <option value="Married">Married</option>
-          <option value="Single">Single</option>
-        </select>
-      </div>
-      <div class="control-wrapper">
-        <label>Driver's Category:</label>
-        <select formControlName="driverCategory" required>
-          <option value="Occasional Driver">Occasional Driver</option>
-          <option value="Frequent Driver">Frequent Driver</option>
-        </select>
-      </div>
-      <div class="control-wrapper">
-        <label>Driver Licence Date:</label>
-        <input type="date" formControlName="driverLicenceDate" required />
-      </div>
-    </div>
-  </fieldset>
+    </fieldset>
+  </ng-container>
 </form>
 <button [disabled]="!defaultForm.valid">Submit</button>
 <div>
