@@ -26,6 +26,30 @@
       <option *ngFor="let driver of drivers">{{ driver }}</option>
     </select>
   </div>
+  <button (click)="addNew()">ADD NEW</button>
+  <button (click)="removeStuff()">Remove</button>
+  <fieldset
+    formArrayName="novaSekcija"
+    *ngFor="let section of newsection.controls; let i = index"
+  >
+    <div>
+      <h3>Nova Sekcija</h3>
+    </div>
+    <div [formGroupName]="i">
+      <div class="control-wrapper">
+        <label>Bla bla bla:</label>
+        <input type="date" formControlName="novo1" required />
+      </div>
+      <div class="control-wrapper">
+        <label>Driver's gender:</label>
+        <select formControlName="novo2" required>
+          <option value="Male">vrednost1</option>
+          <option value="Female">vrednost2</option>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+
   <ng-container *ngIf="defaultForm.get('numberOfDrivers').value > 0">
     <fieldset
       formArrayName="additionalDriver"

@@ -14,7 +14,6 @@ export class TravelFormComponent implements OnInit {
   ) { }
 
   defaultForm: FormGroup;
-  additional: FormArray;
 
   destinations = [
     'Europe',
