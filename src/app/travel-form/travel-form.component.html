@@ -3,7 +3,7 @@
 </h1>
 
 <form class="formGroup" [formGroup]="defaultForm">
-  <div class="control-wrapper">
+  <!-- <div class="control-wrapper">
     <label>Destination:</label>
     <select formControlName="destination" required>
       <option selected value="">Please select</option>
@@ -13,22 +13,33 @@
         >{{ destination }}</option
       >
     </select>
-  </div>
-  <div class="control-wrapper">
+  </div> -->
+  <!-- <div class="control-wrapper">
     <label>Start Date:</label>
     <input type="date" formControlName="startDate" required />
   </div>
   <div class="control-wrapper">
     <label>End Date:</label>
     <input type="date" formControlName="endDate" required />
-  </div>
-  <div class="control-wrapper">
+  </div> -->
+  <!-- <div class="control-wrapper">
     <label>Duration in days:</label>
     <input type="number" formControlName="durationInDays" required />
-  </div>
-  <div class="control-wrapper">
+  </div> -->
+  <!-- <div class="control-wrapper">
     <label>Trip Cost:</label>
     <input type="number" formControlName="tripCost" required />
+  </div> -->
+  <div class="control-wrapper">
+    <div *ngFor="let material of materialArr.controls; let i = index">
+      <input
+        type="checkbox"
+        [formControl]="material"
+        id="{{ materials[i] }}"
+        (change)="getSelectedMaterial()"
+      />
+      <label for="{{ materials[i] }}">{{ materials[i] }}</label>
+    </div>
   </div>
   <div class="control-wrapper">
     <label>Number of travelers:</label>
