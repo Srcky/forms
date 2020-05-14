@@ -47,10 +47,11 @@ export class TravelFormComponent implements OnInit {
     const arr = this.materials.map(() => {
       return this.fb.control(false); // pravim praznu kontrolu kao placeholder za izabrane checkboxove
     });
-    return this.fb.array(arr); // pravim formArray tj. formGroup koji ce da sadrzi te kontrole
+    return this.fb.array(arr); // pravim instancu formArray-a koji ce da sadrzi te kontrole
   }
 
   getSelectedMaterial() {
+    // prolazim kroz sve izabrane checkboxove i trpam ih u jedan obican array. Poziva se u template-u na change event.
     this.selectedMaterials = [];
     this.materialArr.controls.forEach((ctrl, i) => {
       if (ctrl.value) {
@@ -74,7 +75,7 @@ export class TravelFormComponent implements OnInit {
   }
 
   get materialArr() {
-    return this.defaultForm.get('constructionMaterial') as FormArray;
+    return this.defaultForm.get('constructionMaterial') as FormArray; // setujem postojecu kontrolu kao formArray
   }
 
   get formArr() {
