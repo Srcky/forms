@@ -33,21 +33,21 @@ export class TravelFormComponent implements OnInit {
         [Validators.required, Validators.pattern('^[0-9]*$')],
       ],
       otherTravelers: this.fb.array([this.makeNew()]),
-      selMat: this.fb.array([this.makeMaterial()]),
+      selMat: this.makeMaterial(),
     });
   }
 
   onSubmit() {
-    // const selMat = this.selectedMaterials;
-    // console.log({ ...this.defaultForm.value, selMat });
-    console.log(this.defaultForm);
+    const selMat = this.selectedMaterials;
+    const newForm = { ...this.defaultForm.value, selMat };
+    console.log(newForm);
   }
 
   makeMaterial() {
-    const arr = this.materials.map((_) => {
-      return this.fb.control(false);
+    const arr = this.materials.map(() => {
+      return this.fb.control(false); // pravim praznu kontrolu kao placeholder za izabrane checkboxove
     });
-    return this.fb.array(arr);
+    return this.fb.array(arr); // pravim formArray tj. formGroup koji ce da sadrzi te kontrole
   }
 
   getSelectedMaterial() {
@@ -72,6 +72,7 @@ export class TravelFormComponent implements OnInit {
       ],
     });
   }
+
   get materialArr() {
     return this.defaultForm.get('constructionMaterial') as FormArray;
   }
